@@ -15,12 +15,28 @@ class ArticuloDAO{
     function consultar () {
         return "select titulo, descripcion, fecha
                 from articulo
-                where idArticulo = '" . $this -> idArticulo . "'";
+                where i_articulo = '" . $this -> idArticulo . "'";
     }
     
     function crear () {
         return "insert into articulo (titulo, descripcion, fecha)
                 values ('" . $this -> titulo . "', '" . $this -> descripcion . "', '" . $this -> fecha ."')";
+    }
+    
+    function consultarTodos () {
+        return "select id_articulo, titulo, descripcion, fecha
+                from articulo";
+    }
+    
+    function consultarPorPagina ($cantidad, $pagina) {
+        return "select id_articulo, titulo, apellido
+                from Autor
+                limit " . strval(($pagina - 1) * $cantidad) . ", " . $cantidad;
+    }
+    
+    function consultarTotalRegistros () {
+        return "select count(id_articulo)
+                from articulo";
     }
 }
 ?>
